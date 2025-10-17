@@ -1,0 +1,3 @@
+const allowed = ["yakububilyaminu44@gmail.com","abalhafsa@gmail.com","kabironifade@gmail.com","msanusi2009@yahoo.co.uk"];
+document.getElementById('adminLogin').addEventListener('click', ()=>{ const e=document.getElementById('adminEmail').value.trim(); if(allowed.includes(e)){ document.getElementById('adminArea').classList.remove('hidden'); alert('Welcome admin'); loadDemo(); } else alert('Access denied'); });
+function loadDemo(){ document.getElementById('membersDemo').innerHTML = '<p>Open console to use demo approve functions: window._demo.approveUser("0001")</p>'; }
