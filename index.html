@@ -1,1 +1,44 @@
-<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Ardsan Co-operative</title><link rel='manifest' href='manifest.json'><link rel='stylesheet' href='styles.css'></head><body><h1>Ardsan Co-operative</h1><p><a href='admin/index.html'>Admin</a></p></body></html>
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ardsan - Member App</title>
+<link rel="stylesheet" href="styles.css">
+</head><body>
+<header><div class="logo">AC</div><div><h1>Ardsan Cooperative</h1><small class="muted">Member Portal</small></div></header>
+<div class="container">
+  <div id="auth" class="card">
+    <h3>Login</h3>
+    <input id="loginEmail" placeholder="Email">
+    <input id="loginPassword" placeholder="Password" type="password">
+    <div style="display:flex;gap:8px"><button id="loginBtn">Login</button><button id="toRegisterBtn">Register</button></div>
+    <p id="authMsg" class="muted"></p>
+  </div>
+
+  <div id="register" class="card" style="display:none">
+    <h3>Register</h3>
+    <input id="r_name" placeholder="Full name">
+    <input id="r_file" placeholder="File number">
+    <input id="r_ippis" placeholder="IPPIS">
+    <input id="r_dept" placeholder="Department">
+    <input id="r_phone" placeholder="Phone">
+    <input id="r_email" placeholder="Email">
+    <input id="r_password" placeholder="Password" type="password">
+    <input id="r_monthly" placeholder="Monthly deduction (number)" type="number">
+    <textarea id="r_requirements" placeholder="Requirements / Notes for admin"></textarea>
+    <div style="display:flex;gap:8px"><button id="registerBtn">Create Account</button><button id="toLoginBtn">Back to login</button></div>
+    <p id="regMsg" class="muted"></p>
+  </div>
+
+  <div id="dashboard" style="display:none">
+    <div class="card"><h3>Welcome <span id="m_name"></span></h3>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div class="card" style="min-width:140px"><strong>Savings</strong><div id="m_balance">₦0</div></div>
+        <div class="card" style="min-width:140px"><strong>Loan</strong><div id="m_loan">₦0</div></div>
+        <div class="card" style="min-width:140px"><strong>Monthly Deduction</strong><div id="m_monthly">₦0</div></div>
+      </div>
+      <div style="margin-top:10px"><button id="viewCommodities">View Commodities</button> <button id="applyLoan">Apply Loan</button> <button id="logout">Logout</button></div>
+    </div>
+    <div id="content"></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body></html>
