@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Ardsan Cooperative</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="firebase-config.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Admin Dashboard</h1>
+  </header>
+
+  <main>
+    <section id="adminLogin">
+      <h2>Admin Login</h2>
+      <input type="email" id="adminEmail" placeholder="Admin Email" />
+      <button id="adminLoginBtn">Login</button>
+    </section>
+
+    <section id="adminPanel" style="display:none;">
+      <h2>All Registered Users</h2>
+      <ul id="userList"></ul>
+    </section>
+  </main>
+
+  <script>
+    const adminEmails = [
+      "kabironifade@gmail.com",
+      "Yakububilyaminu44@gmail.com",
+      "msanusi2009@yahoo.co.uk"
+    ];
+
+    document.getElementById('adminLoginBtn').addEventListener('click', () => {
+      const email = document.getElementById('adminEmail').value.trim();
+      if (adminEmails.includes(email)) {
+        document.getElementById('adminLogin').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+
+        const db = firebase.database().ref("users");
+        db.on("value", (snapshot) => {
+          const userList = document.getElementById("userList");
+          userList.innerHTML = "";
+          snapshot.forEach((child) => {
+            const li = document.createElement("li");
+            li.textContent = `${child.val().name} (${child.val().email})`;
+            userList.appendChild(li);
+          });
+        });
+      } else {
+        alert("Unauthorized access");
+      }
+    });
+  </script>
+</body>
+</html>
