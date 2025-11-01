@@ -1,59 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard - Ardsan Cooperative</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-  <script src="firebase-config.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
 </head>
 <body>
   <header>
-    <h1>Admin Dashboard</h1>
+    <h1>Ardsan Cooperative Admin Dashboard</h1>
+    <p>Manage users, loans, and transactions</p>
   </header>
 
   <main>
-    <section id="adminLogin">
-      <h2>Admin Login</h2>
-      <input type="email" id="adminEmail" placeholder="Admin Email" />
-      <button id="adminLoginBtn">Login</button>
+    <section id="user-section">
+      <h2>Registered Users</h2>
+      <table id="userTable">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Phone</th>
+            <th>Balance</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="userList"></tbody>
+      </table>
     </section>
 
-    <section id="adminPanel" style="display:none;">
-      <h2>All Registered Users</h2>
-      <ul id="userList"></ul>
+    <section id="loan-section">
+      <h2>Loan Applications</h2>
+      <table id="loanTable">
+        <thead>
+          <tr>
+            <th>User Email</th>
+            <th>Loan Type</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="loanList"></tbody>
+      </table>
+    </section>
+
+    <section id="sales-section">
+      <h2>Posted Sales / Commodities</h2>
+      <table id="salesTable">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Posted By</th>
+          </tr>
+        </thead>
+        <tbody id="salesList"></tbody>
+      </table>
     </section>
   </main>
 
-  <script>
-    const adminEmails = [
-      "kabironifade@gmail.com",
-      "Yakububilyaminu44@gmail.com",
-      "msanusi2009@yahoo.co.uk"
-    ];
+  <footer>
+    <p>&copy; 2025 Ardsan Cooperative</p>
+  </footer>
 
-    document.getElementById('adminLoginBtn').addEventListener('click', () => {
-      const email = document.getElementById('adminEmail').value.trim();
-      if (adminEmails.includes(email)) {
-        document.getElementById('adminLogin').style.display = 'none';
-        document.getElementById('adminPanel').style.display = 'block';
-
-        const db = firebase.database().ref("users");
-        db.on("value", (snapshot) => {
-          const userList = document.getElementById("userList");
-          userList.innerHTML = "";
-          snapshot.forEach((child) => {
-            const li = document.createElement("li");
-            li.textContent = `${child.val().name} (${child.val().email})`;
-            userList.appendChild(li);
-          });
-        });
-      } else {
-        alert("Unauthorized access");
-      }
-    });
-  </script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/admin.js"></script>
 </body>
 </html>
