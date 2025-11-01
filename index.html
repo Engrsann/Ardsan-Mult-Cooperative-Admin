@@ -1,42 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ardsan Cooperative App</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="manifest.json" />
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-  <script src="firebase-config.js"></script>
-</head>
-<body>
-  <header>
-    <h1>Ardsan Cooperative</h1>
-  </header>
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ardsan - Admin Dashboard</title>
+<link rel="stylesheet" href="styles.css">
+</head><body>
+<header><div class="logo">AC</div><div><h1>ARDSAN COOPERATIVE</h1><small class="muted">Admin Dashboard</small></div></header>
+<div class="container">
+  <div id="loginBox" class="card">
+    <h3>Admin Login</h3>
+    <input id="adminEmail" placeholder="Admin Email">
+    <input id="adminPassword" placeholder="Password" type="password">
+    <div style="display:flex;gap:8px"><button id="adminLoginBtn">Login</button></div>
+    <p id="adminMsg" class="muted"></p>
+  </div>
 
-  <main>
-    <section id="register">
-      <h2>Create Account</h2>
-      <input type="text" id="name" placeholder="Full Name" />
-      <input type="email" id="email" placeholder="Email Address" />
-      <input type="password" id="password" placeholder="Create Password" />
-      <button id="registerBtn">Register</button>
-    </section>
-
-    <section id="login">
-      <h2>Login</h2>
-      <input type="email" id="loginEmail" placeholder="Email" />
-      <input type="password" id="loginPassword" placeholder="Password" />
-      <button id="loginBtn">Login</button>
-    </section>
-
-    <section id="userDashboard" style="display:none;">
-      <h2>Welcome, <span id="userName"></span></h2>
-      <p>Your cooperative balance and loan details will appear here.</p>
-    </section>
-  </main>
-
-  <script src="script.js"></script>
-</body>
-</html>
+  <div id="adminArea" style="display:none">
+    <div class="card"><h3>Overview</h3><div id="stats"></div></div>
+    <div class="card"><h3>Pending Registrations</h3><div id="pending"></div></div>
+    <div class="card"><h3>All Users</h3><div id="allUsers"></div></div>
+    <div class="card"><h3>Loan Requests</h3><div id="loans"></div></div>
+    <div class="card"><h3>Commodities</h3><div id="commodities"></div><div style="margin-top:8px"><button id="addCommBtn">Add Commodity</button></div></div>
+    <div style="margin-top:12px"><button id="processMonthlyBtn">Process Monthly Deductions Now</button> <button id="logoutAdmin">Logout</button></div>
+  </div>
+</div>
+<script src="admin.js"></script>
+</body></html>
